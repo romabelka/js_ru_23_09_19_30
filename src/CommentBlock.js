@@ -13,10 +13,10 @@ export default class CommentBlock extends Component {
     const body = isOpen ? <CommentList comments = { this.props.comments }/> : null
 
     return (
-      <div>
+      <section>
           <button onClick = { this.toggleOpen }>{ isOpen ? 'Close comments' : 'Show comments'}</button>
           {body}
-      </div>
+      </section>
     )
   }
 

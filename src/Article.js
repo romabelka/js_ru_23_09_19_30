@@ -10,10 +10,12 @@ export default class Article extends Component {
     render() {
         const { article } = this.props
         const { isOpen } = this.state
+        const haveComments = article.comments && article.comments.length;
 
+        const commentBlock = haveComments ? <CommentBlock comments = { article.comments }/> : null
         const body = isOpen ? (<div>
             <section>{article.text}</section>
-            <CommentBlock comments = { article.comments }/>
+            {commentBlock}
         </div>) : null
 
         return (
