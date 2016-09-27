@@ -3,7 +3,10 @@ import React, { Component } from 'react'
 export default class Article extends Component {
 
     state = {
-        isOpen: false
+        isOpen: false,
+        opened: {
+            a: true
+        }
     }
 
     render() {
@@ -24,6 +27,12 @@ export default class Article extends Component {
         this.setState({
             isOpen: !this.state.isOpen
         })
+/*
+
+        this.setState({
+            opened: {...this.state.opened, a: false}
+        })
+*/
     }
 }
 
