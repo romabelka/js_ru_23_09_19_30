@@ -1,19 +1,20 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import CommentBlock from './CommentBlock';
 
 export default class Article extends Component {
 
     state = {
-        isOpen: false,
-        opened: {
-            a: true
-        }
+        isOpen: false
     }
 
     render() {
         const { article } = this.props
         const { isOpen } = this.state
 
-        const body = isOpen ? <section>{article.text}</section> : null
+        const body = isOpen ? (<div>
+            <section>{article.text}</section>
+            <CommentBlock comments = { article.comments }/>
+        </div>) : null
 
         return (
             <div>
@@ -27,25 +28,5 @@ export default class Article extends Component {
         this.setState({
             isOpen: !this.state.isOpen
         })
-/*
-
-        this.setState({
-            opened: {...this.state.opened, a: false}
-        })
-*/
     }
 }
-
-
-
-/*
-export default (props) => {
-    const { article } = props
-
-    return (
-        <div>
-            <h3>{article.title}</h3>
-            <section>{article.text}</section>
-        </div>
-    )
-}*/
