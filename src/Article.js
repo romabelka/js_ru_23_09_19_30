@@ -1,19 +1,31 @@
 import React, { Component } from 'react'
+import CommentList from './CommentList'
 
 export default class Article extends Component {
 
     state = {
-        isOpen: false,
-        opened: {
-            a: true
-        }
+        isOpen: false
     }
 
     render() {
         const { article } = this.props
         const { isOpen } = this.state
 
-        const body = isOpen ? <section>{article.text}</section> : null
+        let body = null
+
+        if(isOpen) {
+
+            body = <section>{article.text}</section>
+
+            if(article.comments) {
+                body = ( <section>
+                            {article.text}
+                            <CommentList comments={article.comments} />
+                        </section>
+                        )
+            }
+
+        }
 
         return (
             <div>
@@ -27,12 +39,6 @@ export default class Article extends Component {
         this.setState({
             isOpen: !this.state.isOpen
         })
-/*
-
-        this.setState({
-            opened: {...this.state.opened, a: false}
-        })
-*/
     }
 }
 
