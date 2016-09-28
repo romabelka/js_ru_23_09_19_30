@@ -10,25 +10,14 @@ export default class CommentList extends Component {
     render() {
         const {isOpen} = this.state
         const {comments} = this.props
-        let body = null
-        let btn = (<button onClick={this.toggleOpen}>Открыть</button>)
-        if(isOpen) {
-            const commentComponents = comments.map(comment => <li key={comment.id}><Comment comment = {comment} /></li>)
-            body = (
-                <ul>
-                    {commentComponents}
-                </ul>
-            )
-            btn = (<button onClick={this.toggleOpen}>Закрыть</button>)
-        }
-
-
-
-
+        const btn = ( <button onClick={this.toggleOpen}> { this.state.isOpen ? 'Закрыть' : 'Открыть'} </button> )
+        const commentComponents = isOpen ? comments.map(comment => <li key={comment.id}><Comment comment = {comment} /></li>) : null
         return (
             <div>
                 <h3>Комментарии {btn}</h3>
-                {body}
+                <ul>
+                    {commentComponents}
+                </ul>
             </div>
         )
     }

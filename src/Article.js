@@ -11,26 +11,14 @@ export default class Article extends Component {
         const { article } = this.props
         const { isOpen } = this.state
 
-        let body = null
-
-        if(isOpen) {
-
-            body = <section>{article.text}</section>
-
-            if(article.comments) {
-                body = ( <section>
-                            {article.text}
-                            <CommentList comments={article.comments} />
-                        </section>
-                        )
-            }
-
-        }
+        const body = isOpen ? <section>{article.text} {article.comments ? <CommentList comments={article.comments} /> : null} </section> : null
 
         return (
             <div>
                 <h3 onClick = {this.toggleOpen}>{article.title}</h3>
-                {body}
+                <section>
+                    {body}
+                </section>
             </div>
         )
     }
