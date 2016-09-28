@@ -16,9 +16,7 @@ export default class Article extends Component {
         return (
             <div>
                 <h3 onClick = {this.toggleOpen}>{article.title}</h3>
-                <section>
-                    {body}
-                </section>
+                {body}
             </div>
         )
     }

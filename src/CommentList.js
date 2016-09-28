@@ -12,12 +12,11 @@ export default class CommentList extends Component {
         const {comments} = this.props
         const btn = ( <button onClick={this.toggleOpen}> { this.state.isOpen ? 'Закрыть' : 'Открыть'} </button> )
         const commentComponents = isOpen ? comments.map(comment => <li key={comment.id}><Comment comment = {comment} /></li>) : null
+        const body = commentComponents ? (<ul> {commentComponents} </ul>) : null
         return (
             <div>
                 <h3>Комментарии {btn}</h3>
-                <ul>
-                    {commentComponents}
-                </ul>
+                {body}
             </div>
         )
     }
