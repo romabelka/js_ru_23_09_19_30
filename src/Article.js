@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import CommentList from './CommentList'
 export default class Article extends Component {
 
     state = {
@@ -13,7 +13,9 @@ export default class Article extends Component {
         const { article } = this.props
         const { isOpen } = this.state
 
-        const body = isOpen ? <section>{article.text}</section> : null
+
+            const body = isOpen ? <div><section>{article.text}</section><CommentList comments = {article.comments} /></div> : null
+        
 
         return (
             <div>
