@@ -10,7 +10,7 @@ export default class Article extends Component {
     render() {
         const { article } = this.props
         const { isOpen } = this.state
-
+        //эту проврку логичнее в CommentList делать
         const commentListComponent =
           article.comments ? <CommentList comments={article.comments}/> : <span><strong>Нет комментариев</strong></span>
 
