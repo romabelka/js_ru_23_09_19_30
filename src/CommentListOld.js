@@ -1,16 +1,13 @@
-import React, { PropTypes } from 'react'
+import React  from 'react'
 import Comment from './Comment'
+import toggleOpen from './mixins/toggleOpen'
 
 const CommentListOld = React.createClass({
+    mixins: [toggleOpen],
     propTypes: {
-        comments: PropTypes.array
+        comments: React.PropTypes.array
     },
 
-    getInitialState() {
-        return {
-            isOpen: false
-        }
-    },
 
     render() {
         const { comments } = this.props
@@ -27,13 +24,6 @@ const CommentListOld = React.createClass({
                 {body}
             </div>
         )
-    },
-
-    toggleOpen(ev) {
-        ev.preventDefault()
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
     }
 })
 
