@@ -1,7 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import Comment from './Comment'
 
 class CommentList extends Component {
+
+    static propTypes = {
+        comments: PropTypes.array
+    }
 
     state = {
         isOpen: false
