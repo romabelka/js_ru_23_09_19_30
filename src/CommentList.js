@@ -12,20 +12,26 @@ export default class CommentList extends Component {
     const { comments } = this.props
 
     let buttonText = 'Показать комментарии'
+    let commentListComponent = null
     let commentComponents = null
 
-    if (isShow) {
-      buttonText = 'Скрыть комментарии'
-      commentComponents = comments.map(comment => <li key={comment.id}><Comment comment={comment} /></li>)
-
+    if (!comments) {
+      commentListComponent = <span><strong>Нет комментариев</strong></span>
+    } else {
+      if (isShow) {
+        buttonText = 'Скрыть комментарии'
+        commentComponents = comments.map(comment => <li key={comment.id}><Comment comment={comment}/></li>)
+      }
+      commentListComponent = <div>
+        <button onClick={this.toggleShow}>{buttonText}</button>
+        < ul >
+          { commentComponents }
+        </ul>
+      </div>
     }
 
-    return (
-      <div>
-        <button onClick={this.toggleShow}>{buttonText}</button>
-        <ul>
-          {commentComponents}
-          </ul>
+    return (<div>
+        { commentListComponent }
       </div>
     )
   }

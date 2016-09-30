@@ -10,12 +10,8 @@ export default class Article extends Component {
     render() {
         const { article } = this.props
         const { isOpen } = this.state
-        //эту проврку логичнее в CommentList делать
-        const commentListComponent =
-          article.comments ? <CommentList comments={article.comments}/> : <span><strong>Нет комментариев</strong></span>
 
-
-        const body = isOpen ? <section><p>{article.text}</p>{commentListComponent}</section> : null
+        const body = isOpen ? <section><p>{article.text}</p><CommentList comments={article.comments}/></section> : null
 
         return (
             <div>
