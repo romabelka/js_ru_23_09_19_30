@@ -10,7 +10,7 @@ export default class Article extends Component {
     render() {
         const { article } = this.props
         const { isOpen } = this.state
-
+        //проверять наличие комментов логичнее в CommentList
         const body = isOpen ? <section>{article.text} {article.comments ? <CommentList comments={article.comments} /> : null} </section> : null
 
         return (
