@@ -6,7 +6,7 @@ class Chart extends Component {
     };
 
     componentDidMount() {
-        console.log('---', 'draw chart with d3', this.ref.container)
+        console.log('---', 'draw chart with d3', this.refs.container)
     }
 
     render() {
