@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Comment from './Comment'
+import toggleOpen from './decorators/toggleOpen'
 
 class CommentList extends Component {
 
@@ -7,13 +8,8 @@ class CommentList extends Component {
         comments: PropTypes.array
     }
 
-    state = {
-        isOpen: false
-    }
-
     render() {
-        const { comments } = this.props
-        const { isOpen } = this.state
+        const { comments, isOpen, toggleOpen } = this.props
         if (!comments || !comments.length) return <p>No comments yet</p>
 
         const commentItems = comments.map(comment => <li key={comment.id}><Comment comment = {comment}/></li>)
@@ -22,18 +18,11 @@ class CommentList extends Component {
 
         return (
             <div>
-                <a href="#" onClick={this.toggleOpen}>{text}</a>
+                <a href="#" onClick={toggleOpen}>{text}</a>
                 {body}
             </div>
         )
     }
-
-    toggleOpen = ev => {
-        ev.preventDefault()
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    }
 }
 
-export default CommentList
+export default toggleOpen(CommentList)
