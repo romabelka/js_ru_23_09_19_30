@@ -8,6 +8,22 @@ class CommentList extends Component {
         comments: PropTypes.array
     }
 
+    componentWillMount() {
+        console.log('---', 'mounting')
+    }
+
+    componentDidMount() {
+        console.log('---', 'mounted')
+    }
+
+    componentWillUnmount() {
+        console.log('---', 'unmounting')
+    }
+
+    getRef = (ref) => {
+        this.containerNode = ref
+    }
+
     render() {
         const { comments, isOpen, toggleOpen } = this.props
         if (!comments || !comments.length) return <p>No comments yet</p>
@@ -17,7 +33,7 @@ class CommentList extends Component {
         const body = isOpen && <ul>{commentItems}</ul>
 
         return (
-            <div>
+            <div ref = {this.getRef}>
                 <a href="#" onClick={toggleOpen}>{text}</a>
                 {body}
             </div>

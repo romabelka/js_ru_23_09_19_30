@@ -1,5 +1,6 @@
 import React from 'react'
 import Article from './Article'
+import Chart from './Chart'
 
 export default (props) => {
     const { articles } = props
@@ -7,8 +8,11 @@ export default (props) => {
     const articleComponents = articles.map(article => <li key={article.id}><Article article = {article} /></li>)
 
     return (
-        <ul>
-            {articleComponents}
-        </ul>
+        <div>
+            <ul>
+                {articleComponents}
+            </ul>
+            <Chart />
+        </div>
     )
 }
