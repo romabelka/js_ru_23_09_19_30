@@ -1,26 +1,33 @@
-import React, { Component } from 'react'
-import CommentList from './CommentList'
+import React, { Component, PropTypes } from "react";
+import CommentList from "./CommentList";
 
 export default class Article extends Component {
 
-    render() {
-        const { article, isOpen, openArticle } = this.props
+  static propTypes = {
+    article: PropTypes.shape({
+      id: PropTypes.string,
+      date: PropTypes.string,
+      title: PropTypes.string,
+      text: PropTypes.string,
+      comments: PropTypes.array
+    }).isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    openArticle: PropTypes.any.isRequired
+  }
 
-        const body = isOpen ? <section>{article.text}<CommentList comments = {article.comments}/></section> : null
+  render() {
+    const { article, isOpen, openArticle } = this.props
 
-        return (
-            <div>
-                <h3 onClick = {openArticle}>{article.title}</h3>
-                {body}
-            </div>
-        )
-    }
+    const body = isOpen ? <section>{article.text}<CommentList comments={article.comments}/></section> : null
 
-    toggleOpen = ev => {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    }
+    return (
+      <div>
+        <h3 onClick={openArticle}>{article.title}</h3>
+        {body}
+      </div>
+    )
+  }
+
 }
 
 
