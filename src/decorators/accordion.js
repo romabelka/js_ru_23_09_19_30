@@ -1,22 +1,17 @@
-'use strict'
+import React, { Component as ReactComponent} from 'react'
 
-import React from "react"
-
-export default function accordion(Component) {
-  return class WrappedComponent extends React.Component {
+export default (Component) => class Accordion extends ReactComponent {
     state = {
-      //не привязывайся к названию сущности, в декораторах должен быть общий функционал. Используй, например, openItemId 
-      openArticleId: null
+        openItemId: null
     }
+
+    toggleItem = id => ev => this.setState({
+        openItemId: this.isItemOpen(id) ? null : id
+    })
+
+    isItemOpen = id => this.state.openItemId == id
 
     render() {
-      return <Component {...this.props} {...this.state} toggleOpenArticle={this.toggleOpenArticle}/>
+        return <Component {...this.props} toggleItem = {this.toggleItem} isItemOpen = {this.isItemOpen}/>
     }
-
-    toggleOpenArticle = id => ev => {
-      this.setState({
-        openArticleId: (id != this.state.openArticleId ? id : null)
-      })
-    }
-  }
 }

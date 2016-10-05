@@ -2,7 +2,7 @@
 import React from 'react'
 
 export default function toggleOpen(Component) {
-    return class WrappedComponent extends React.Component {
+    return class ToggleOpen extends React.Component {
         state = {
             isOpen: false
         }
