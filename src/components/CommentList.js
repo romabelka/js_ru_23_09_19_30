@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Comment from './Comment'
+import AddComment from './AddComment'
 import toggleOpen from './../decorators/toggleOpen'
 
 function CommentList(props) {
@@ -14,6 +15,10 @@ function CommentList(props) {
         <div>
             <a href="#" onClick={toggleOpen}>{text}</a>
             {body}
+            {/*по идее нужно было бы сделать чтобы оно показывалось при клике на показать комменты,
+            но блок когда нет комментов возвращается отдельно, а переделывать смысла нет,
+            ты выкатишь свою версию и будем работать с ней :)*/}
+            <AddComment />
         </div>
     )
 }
