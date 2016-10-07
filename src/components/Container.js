@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import ArticleList from './ArticleList'
 import Chart from './Chart'
 import NewArticleForm from './NewArticleForm'
-import Filter from './Filter'
+import Filter from './Filters'
 
 class Container extends Component {
     static propTypes = {
