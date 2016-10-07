@@ -3,6 +3,7 @@ import ArticleList from './ArticleList'
 import Chart from './Chart'
 import NewArticleForm from './NewArticleForm'
 import Filter from './Filter'
+import Calendar from './Calendar'
 
 class Container extends Component {
     static propTypes = {
@@ -14,6 +15,8 @@ class Container extends Component {
         return (
             <div>
                 <Filter articles = {articles} />
+                {/*Все хорошо, но он должен был быть в Filters*/}
+                <Calendar />
                 <ArticleList articles = {articles} />
                 <Chart />
                 <NewArticleForm />
