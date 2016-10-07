@@ -15,6 +15,7 @@ class Container extends Component {
         return (
             <div>
                 <Filter articles = {articles} />
+                {/*Все хорошо, но он должен был быть в Filters*/}
                 <Calendar />
                 <ArticleList articles = {articles} />
                 <Chart />
