@@ -4,6 +4,8 @@ import Chart from './Chart'
 import NewArticleForm from './NewArticleForm'
 import Filter from './Filters'
 import Counter from './Counter'
+import { Provider} from 'react-redux'
+import store from '../store'
 
 class Container extends Component {
     static propTypes = {
@@ -13,13 +15,15 @@ class Container extends Component {
     render() {
         const { articles } = this.props
         return (
-            <div>
-                <Counter />
-                <Filter articles = {articles} />
-                <ArticleList articles = {articles} />
-                <Chart />
-                <NewArticleForm />
-            </div>
+            <Provider store = {store}>
+                <div>
+                    <Counter />
+                    <Filter articles = {articles} />
+                    <ArticleList articles = {articles} />
+                    <Chart />
+                    <NewArticleForm />
+                </div>
+            </Provider>
         )
     }
 }
