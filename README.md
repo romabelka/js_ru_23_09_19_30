@@ -45,3 +45,8 @@ links:
 * http://redux.js.org/docs/advanced/Middleware.html
 * https://github.com/gaearon/redux-devtools
 * https://github.com/zalmoxisus/redux-devtools-extension
+
+
+##ДЗ 6.1 При открытии списка комментов читать их из API(пример: /api/comment?article=56c782f17b4e0ba78c7ad717)
+##ДЗ 6.2 Сделать аналогичный AC с использованием thunk
+##ДЗ 6.3 показывать Loader во время загрузки комментов
