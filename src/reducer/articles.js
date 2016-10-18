@@ -1,5 +1,5 @@
 import { normalizedArticles } from '../fixtures'
-import { DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES } from '../constants'
+import { DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES, START, SUCCESS, FAIL } from '../constants'
 import { arrayToMap } from '../store/helpers'
 import { Record, Map } from 'immutable'
 
@@ -21,7 +21,7 @@ export default (articles = new Map({}), action) => {
         case ADD_COMMENT:
             return articles.updateIn([payload.articleId, 'comments'], comments => comments.concat(generatedId))
 
-        case LOAD_ALL_ARTICLES:
+        case LOAD_ALL_ARTICLES + SUCCESS:
             return articles.merge(arrayToMap(response,  article => new ArticleModel(article)))
     }
 
