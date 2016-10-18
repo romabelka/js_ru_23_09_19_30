@@ -11,18 +11,32 @@ const ArticleModel = Record({
     comments: []
 })
 
-export default (articles = new Map({}), action) => {
+const defaultState = new Map({
+    entities: new Map({}),
+    loading: false,
+    loaded: false
+})
+
+export default (articles = defaultState, action) => {
     const { type, payload, generatedId, response } = action
 
     switch (type) {
         case DELETE_ARTICLE:
-            return articles.delete(payload.id)
+            return articles.deleteIn(['entities', payload.id])
 
         case ADD_COMMENT:
-            return articles.updateIn([payload.articleId, 'comments'], comments => comments.concat(generatedId))
+            return articles.updateIn(['entities', payload.articleId, 'comments'], comments => comments.concat(generatedId))
+
+        case LOAD_ALL_ARTICLES + START:
+            return articles.set('loading', true)
 
         case LOAD_ALL_ARTICLES + SUCCESS:
-            return articles.merge(arrayToMap(response,  article => new ArticleModel(article)))
+            return articles
+                .update('entities', entities =>
+                    entities.merge(arrayToMap(response,  article => new ArticleModel(article)))
+                )
+                .set('loading', false)
+                .set('loaded', true)
     }
 
     return articles
