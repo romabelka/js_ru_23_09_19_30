@@ -50,3 +50,10 @@ links:
 ##ДЗ 6.1 При открытии списка комментов читать их из API(пример: /api/comment?article=56c782f17b4e0ba78c7ad717)
 ##ДЗ 6.2 Сделать аналогичный AC с использованием thunk
 ##ДЗ 6.3 показывать Loader во время загрузки комментов
+
+links:
+* https://github.com/xgrommx/awesome-redux
+* https://github.com/evgenyrodionov/redux-logger
+* https://www.npmjs.com/package/redux-promise
+* https://github.com/ashaffer/redux-multi
+* https://github.com/gaearon/redux-thunk
