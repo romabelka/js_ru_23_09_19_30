@@ -14,15 +14,19 @@ class Container extends Component {
         return (
             <Provider store={store}>
                 <div>
-                    <Counter />
-                    <Filter articles={[]}/>
-                    <ArticleList />
-                    <Chart />
-                    <NewArticleForm />
+                    {this.props.children}
                 </div>
             </Provider>
         )
     }
 }
+
+/*
+ <Counter />
+ <Filter articles={[]}/>
+ <ArticleList />
+ <Chart />
+ <NewArticleForm />
+ */
 
 export default Container
