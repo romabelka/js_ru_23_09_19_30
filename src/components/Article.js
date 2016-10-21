@@ -9,18 +9,20 @@ import Loader from './Loader'
 
 class Article extends Component {
     static propTypes = {
-        article: PropTypes.object.isRequired,
-        isOpen: PropTypes.bool.isRequired,
-        openArticle: PropTypes.func.isRequired
+        article: PropTypes.object,
+        isOpen: PropTypes.bool,
+        openArticle: PropTypes.func
     }
 
-    componentWillUpdate(nextProps) {
-        const { article: { id, text, loading }, isOpen, loadArticle } = this.props
-        if (nextProps.isOpen && !isOpen && !text && !loading) loadArticle(id)
+    componentWillReceiveProps(nextProps) {
+        if (!nextProps.article) return
+        const { article: { id, text, loading }, isOpen, loadArticle } = nextProps
+        if (isOpen && !text && !loading) loadArticle(id)
     }
 
     render() {
         const { article, isOpen, openArticle } = this.props
+        if (!article) return null
         const loader = article.loading ? <Loader /> : null
 
         const body = isOpen ? <section>{loader}{article.text}<CommentList article = {article} ref = "commentList"/></section> : null
@@ -47,4 +49,5 @@ class Article extends Component {
     }
 }
 
-export default connect(null, { deleteArticle, loadArticle })(Article)
+export default connect((state, { id }) => ({article: state.articles.getIn(['entities', id])}),
+    { deleteArticle, loadArticle })(Article)

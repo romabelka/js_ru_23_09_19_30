@@ -22,12 +22,4 @@ class Container extends Component {
     }
 }
 
-/*
- <Counter />
- <Filter articles={[]}/>
- <ArticleList />
- <Chart />
- <NewArticleForm />
- */
-
 export default Container
