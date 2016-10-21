@@ -1,6 +1,5 @@
-import { normalizedComments } from '../fixtures'
 import { arrayToMap } from '../store/helpers'
-import { ADD_COMMENT } from '../constants'
+import { ADD_COMMENT, LOAD_COMMENTS_FOR_ARTICLE, SUCCESS } from '../constants'
 import { Record, Map } from 'immutable'
 
 const CommentModel = Record({
@@ -10,9 +9,8 @@ const CommentModel = Record({
 })
 
 const defaultState = new Map({
-    entities: arrayToMap(normalizedComments, comment => new CommentModel(comment))
+    entities: new Map({})
 })
-
 
 export default (comments = defaultState, action) => {
     const { type, payload, response, error, generatedId } = action
@@ -20,6 +18,11 @@ export default (comments = defaultState, action) => {
     switch (type) {
         case ADD_COMMENT:
             return comments.setIn(['entities', generatedId], new CommentModel({...payload.comment, id: generatedId}))
+
+        case LOAD_COMMENTS_FOR_ARTICLE + SUCCESS:
+            return comments.update('entities', entities =>
+                entities.merge(arrayToMap(response, comment => new CommentModel(comment)))
+            )
     }
 
     return comments
