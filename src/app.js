@@ -3,8 +3,6 @@ import { render } from 'react-dom'
 import Container from './components/Container'
 import { Provider } from 'react-redux'
 import store from './store'
+import routes from './routes'
 
-render(<Provider store = {store}>
-        <Container />
-    </Provider>
-, document.getElementById('container'))
+render(routes, document.getElementById('container'))

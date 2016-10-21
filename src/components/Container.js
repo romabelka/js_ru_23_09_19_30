@@ -4,20 +4,23 @@ import Chart from './Chart'
 import NewArticleForm from './NewArticleForm'
 import Filter from './Filters'
 import Counter from './Counter'
+import { Provider } from 'react-redux'
+import store from '../store'
 
 class Container extends Component {
-    static propTypes = {
-    };
+    static propTypes = {};
 
     render() {
         return (
-            <div>
-                <Counter />
-                <Filter articles={[]}/>
-                <ArticleList />
-                <Chart />
-                <NewArticleForm />
-            </div>
+            <Provider store={store}>
+                <div>
+                    <Counter />
+                    <Filter articles={[]}/>
+                    <ArticleList />
+                    <Chart />
+                    <NewArticleForm />
+                </div>
+            </Provider>
         )
     }
 }
