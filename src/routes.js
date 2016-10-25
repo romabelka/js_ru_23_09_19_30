@@ -10,8 +10,10 @@ import NotFoundPage from './routeHandlers/NotFoundPage'
 import CommentsRoot from './routeHandlers/CommentsRoot'
 import CommentsPage from './routeHandlers/CommentsPage'
 import ArticleIndexPage from './routeHandlers/ArticleIndexPage'
+import ErrorPage from './routeHandlers/ErrorPage'
+import history from './history'
 
-export default <Router history = {browserHistory}>
+export default <Router history = {history}>
     <Route path = "/" component = {Container}>
         <IndexRedirect to = "/articles" />
         <Redirect from="article" to="/articles" />
@@ -26,6 +28,7 @@ export default <Router history = {browserHistory}>
             <IndexRedirect to = "1" />
             <Route path = ":page" component = {CommentsPage} />
         </Route>
+        <Route path = "error" component = {ErrorPage} />
         <Route path = "*" component = {NotFoundPage} />
     </Route>
 </Router>

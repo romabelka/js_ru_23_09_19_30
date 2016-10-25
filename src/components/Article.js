@@ -23,9 +23,8 @@ class Article extends Component {
     }
 
     checkAndLoad(props) {
-        if (!props.article) return
-        const { article: { id, text, loading }, isOpen, loadArticle } = props
-        if (isOpen && !text && !loading) loadArticle(id)
+        const { article, loadArticle, id, isOpen } = props
+        if (isOpen && !article || (!article.text && !article.loading)) loadArticle(id)
     }
 
     render() {
