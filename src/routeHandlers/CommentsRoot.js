@@ -9,8 +9,9 @@ class CommentRoot extends Component {
     render() {
         return (
             <div>
+                {this.props.counter}
                 <h1>Comments pagination</h1>
-                {this.props.children}
+                {this.props.commentPage}
                 <CommentsPaginator />
             </div>
         )

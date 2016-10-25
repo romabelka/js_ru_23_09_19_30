@@ -19,7 +19,10 @@ export default <Router history = {history}>
         <IndexRedirect to = "/articles" />
         <Redirect from="article" to="/articles" />
         <Route path = "counter" component = {Counter} />
-        <Route path = "articles" component = {ArticleListPage}>
+        <Route path = "articles" component = {ArticleListPage}
+               onLeave = {(prevState) => console.log('leaving')}
+               onChange = {() => console.log('changing route')}
+        >
             <IndexRoute component = {ArticleIndexPage} />
             <Route path = "new" component = {NewArticleForm}
                 onEnter = {(nextState, replace) => !checkAuth() && replace('/error?message=authorized only')}
@@ -29,7 +32,7 @@ export default <Router history = {history}>
         <Route path = "filters" component = {Filters} />
         <Route path = "comments" component = {CommentsRoot}>
             <IndexRedirect to = "1" />
-            <Route path = ":page" component = {CommentsPage} />
+            <Route path = ":page" components = {{commentPage: CommentsPage, counter: Counter}} />
         </Route>
         <Route path = "error" component = {ErrorPage} />
         <Route path = "*" component = {NotFoundPage} />
