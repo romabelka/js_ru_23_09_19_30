@@ -6,10 +6,29 @@ import { Link } from 'react-router'
 class Container extends Component {
     static propTypes = {};
 
+    static childContextTypes = {
+        username: PropTypes.string
+    }
+
+    state = {
+        username: ''
+    }
+
+    handleChange = ev => this.setState({
+        username: ev.target.value
+    })
+
+    getChildContext() {
+        return {
+            username: this.state.username
+        }
+    }
+
     render() {
         return (
             <Provider store={store}>
                 <div>
+                    <input value = {this.state.username} onChange = {this.handleChange} />
                     <ul>
                         <li><Link to="/articles" activeClassName = "active" activeStyle = {{color: 'red'}}>articles</Link></li>
                         <li><Link to="/articles/1234" activeClassName = "active" activeStyle = {{color: 'red'}}>wrong article</Link></li>

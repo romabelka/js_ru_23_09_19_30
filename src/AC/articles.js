@@ -31,7 +31,7 @@ export function loadArticle(id) {
                     response
                 }))
                 .fail(error => {
-                    browserHistory.replace(`/error?message=${error.statusText}`)
+                    history.replace(`/error?message=${error.statusText}`)
                 })
         }, 1000)
     }
