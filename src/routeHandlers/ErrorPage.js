@@ -6,7 +6,6 @@ class ErrorPage extends Component {
     };
 
     render() {
-        debugger
         return (
             <div>
                 <h1>{this.props.location.query.message}</h1>

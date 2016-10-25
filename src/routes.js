@@ -12,6 +12,7 @@ import CommentsPage from './routeHandlers/CommentsPage'
 import ArticleIndexPage from './routeHandlers/ArticleIndexPage'
 import ErrorPage from './routeHandlers/ErrorPage'
 import history from './history'
+import { checkAuth } from './store/helpers'
 
 export default <Router history = {history}>
     <Route path = "/" component = {Container}>
@@ -20,7 +21,9 @@ export default <Router history = {history}>
         <Route path = "counter" component = {Counter} />
         <Route path = "articles" component = {ArticleListPage}>
             <IndexRoute component = {ArticleIndexPage} />
-            <Route path = "new" component = {NewArticleForm} />
+            <Route path = "new" component = {NewArticleForm}
+                onEnter = {(nextState, replace) => !checkAuth() && replace('/error?message=authorized only')}
+            />
             <Route path = ":id" component = {ArticlePage} />
         </Route>
         <Route path = "filters" component = {Filters} />

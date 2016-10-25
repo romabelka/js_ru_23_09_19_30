@@ -8,3 +8,7 @@ export function getRelation(entity, relation, storeState) {
 export function arrayToMap(arr, mapper = (f) => f) {
     return arr.reduce((acc, entity) => acc.set(entity.id, mapper(entity)), new Map({}))
 }
+
+export function checkAuth() {
+    return false
+}
