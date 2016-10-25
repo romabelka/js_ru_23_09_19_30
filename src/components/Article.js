@@ -14,9 +14,17 @@ class Article extends Component {
         openArticle: PropTypes.func
     }
 
+    componentDidMount() {
+        this.checkAndLoad(this.props)
+    }
+
     componentWillReceiveProps(nextProps) {
-        if (!nextProps.article) return
-        const { article: { id, text, loading }, isOpen, loadArticle } = nextProps
+        this.checkAndLoad(nextProps)
+    }
+
+    checkAndLoad(props) {
+        if (!props.article) return
+        const { article: { id, text, loading }, isOpen, loadArticle } = props
         if (isOpen && !text && !loading) loadArticle(id)
     }
 
